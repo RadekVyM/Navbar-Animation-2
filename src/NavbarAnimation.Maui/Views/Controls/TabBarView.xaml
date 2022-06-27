@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NavbarAnimation.Maui.Views.Controls.TabBarView">
+    <ContentView.Resources>
+        <x:Double x:Key="ViewHeight">80</x:Double>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="HeightRequest" Value="{StaticResource ViewHeight}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style TargetType="{x:Type ContentView}">
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="HeightRequest" Value="{StaticResource ViewHeight}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </ContentView.Resources>
+
+    <Border HorizontalOptions="Center" 
+            MaximumWidthRequest="{OnPlatform WinUI=700}" MinimumWidthRequest="{OnPlatform Default=240, WinUI=340}" >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10,10,0,0"/>
+        </Border.StrokeShape>
+        <Grid HorizontalOptions="Fill" VerticalOptions="Center"
+              BackgroundColor="{StaticResource TabBarColor}"
+              HeightRequest="{StaticResource ViewHeight}">
+            <GraphicsView x:Name="graphicsView" 
+                          HorizontalOptions="Fill" VerticalOptions="Center"
+                          HeightRequest="{StaticResource ViewHeight}"
+                          SizeChanged="GraphicsViewSizeChanged" InputTransparent="True"/>
+            <Grid HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="{StaticResource ViewHeight}"
+                  ColumnDefinitions="*,*,*,*,*">
+                <Button Grid.Column="0" Clicked="DevoirsButtonClicked"/>
+                <Button Grid.Column="1" Clicked="AgendaButtonClicked"/>
+                <Button Grid.Column="2" Clicked="NotesButtonClicked"/>
+                <Button Grid.Column="3" Clicked="MessagesButtonClicked"/>
+                <Button Grid.Column="4" Clicked="AbsencesButtonClicked"/>
+                <!--<ContentView Grid.Column="0">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DevoirsButtonClicked"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="1">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AgendaButtonClicked"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="2">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NotesButtonClicked"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="3">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MessagesButtonClicked"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="4">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AbsencesButtonClicked"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>-->
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>
