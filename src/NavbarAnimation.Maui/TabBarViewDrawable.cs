@@ -50,6 +50,8 @@ namespace NavbarAnimation.Maui
 
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            canvas.SaveState();
+
             float width = dirtyRect.Width - (2 * margin);
             float selectedRectWidth = width / TabContents.Count;
             float selectedRectPosition = margin + (SelectedRectPosition * selectedRectWidth);
@@ -85,6 +87,7 @@ namespace NavbarAnimation.Maui
                 titlePath.Move((i * selectedRectWidth) + margin, titleTopMargin + IconHeight + (rect.Height - IconHeight) / 2);
 
                 canvas.FillPath(iconPath);
+                canvas.SetFillPaint(linearGradientPaint, rect);
                 canvas.FillRectangle(GetTitleRect(titlePath));
                 canvas.SetFillPaint(tabBarPaint, rect);
                 canvas.FillPath(titlePath);
@@ -98,7 +101,10 @@ namespace NavbarAnimation.Maui
                 .LineTo(selectedRectPosition + thumbHeight, thumbHeight)
                 .QuadTo(selectedRectPosition, thumbHeight, selectedRectPosition, 0);
             thumbPath.Close();
+            canvas.SetFillPaint(linearGradientPaint, rect);
             canvas.FillPath(thumbPath);
+
+            canvas.RestoreState();
         }
 
         private RectF GetTitleRect(PathF path)
