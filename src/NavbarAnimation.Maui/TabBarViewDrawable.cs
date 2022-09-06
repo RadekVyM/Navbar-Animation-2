@@ -14,6 +14,7 @@ namespace NavbarAnimation.Maui
         private readonly float margin = 10;
         private readonly float titleTopMargin = 8;
         private readonly float titleHeight = 15;
+        private readonly float thumbHeight = 10;
 
         public IList<TabContent> TabContents
         {
@@ -90,7 +91,6 @@ namespace NavbarAnimation.Maui
                 canvas.SetFillPaint(linearGradientPaint, rect);
             }
 
-            float thumbHeight = 10f;
             var thumbPath = new PathF()
                 .MoveTo(selectedRectPosition, 0)
                 .LineTo(selectedRectPosition + selectedRectWidth, 0)

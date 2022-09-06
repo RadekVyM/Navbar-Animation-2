@@ -2,7 +2,7 @@
 
 namespace NavbarAnimation.Maui
 {
-    public partial class AppShell : OverlayShell.OverlayShell
+    public partial class AppShell : SimpleToolkit.SimpleShell.SimpleShell
     {
         public AppShell()
         {

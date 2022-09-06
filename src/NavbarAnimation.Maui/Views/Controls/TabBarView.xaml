@@ -14,13 +14,6 @@
             <Setter Property="BorderWidth" Value="0"/>
             <Setter Property="Background" Value="Transparent"/>
         </Style>
-        <Style TargetType="{x:Type ContentView}">
-            <Setter Property="VerticalOptions" Value="Fill"/>
-            <Setter Property="HorizontalOptions" Value="Fill"/>
-            <Setter Property="HeightRequest" Value="{StaticResource ViewHeight}"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>
     </ContentView.Resources>
 
     <Border HorizontalOptions="Center" 
@@ -42,31 +35,6 @@
                 <Button Grid.Column="2" Clicked="NotesButtonClicked"/>
                 <Button Grid.Column="3" Clicked="MessagesButtonClicked"/>
                 <Button Grid.Column="4" Clicked="AbsencesButtonClicked"/>
-                <!--<ContentView Grid.Column="0">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="DevoirsButtonClicked"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>
-                <ContentView Grid.Column="1">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="AgendaButtonClicked"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>
-                <ContentView Grid.Column="2">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="NotesButtonClicked"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>
-                <ContentView Grid.Column="3">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="MessagesButtonClicked"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>
-                <ContentView Grid.Column="4">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="AbsencesButtonClicked"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>-->
             </Grid>
         </Grid>
     </Border>

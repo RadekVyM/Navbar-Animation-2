@@ -49,6 +49,7 @@ public partial class TabBarView : ContentView
             initialSizeChange = false;
         }
     }
+
     private void SetDefaultSelection()
     {
         drawable.SelectedRectPosition = 0;
