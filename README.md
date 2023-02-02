@@ -8,7 +8,7 @@
 
 ## My .NET MAUI implementation
 
-The application was built using .NET MAUI APIs and my library [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit).
+The application was built using .NET MAUI APIs and my [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library.
 
 <p align="center">
     <img src="./images/android_navbaranimation_2.gif" data-canonical-src="./images/android_navbaranimation_2.gif" height="600" />
@@ -32,5 +32,6 @@ These are all the platforms I have tested the app on:
 
 - Use of [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library
     - `SimpleShell`
+    - `Icon`
 - `GraphicsView`
 - Animations
