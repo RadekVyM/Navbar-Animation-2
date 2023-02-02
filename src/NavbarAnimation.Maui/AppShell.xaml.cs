@@ -13,6 +13,8 @@ namespace NavbarAnimation.Maui
             AddTab(typeof(NotesPage), PageType.NotesPage);
             AddTab(typeof(MessagesPage), PageType.MessagesPage);
             AddTab(typeof(AbsencesPage), PageType.AbsencesPage);
+
+            tabBarView.SetSelection(0);
         }
 
         private void AddTab(Type page, PageType pageEnum)

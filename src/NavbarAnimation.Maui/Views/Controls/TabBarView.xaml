@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NavbarAnimation.Maui.Views.Controls.TabBarView">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:NavbarAnimation.Maui.Views.Controls"
+    x:Class="NavbarAnimation.Maui.Views.Controls.TabBarView">
+
     <ContentView.Resources>
         <x:Double x:Key="ViewHeight">80</x:Double>
 
@@ -16,20 +19,44 @@
         </Style>
     </ContentView.Resources>
 
-    <Border HorizontalOptions="Center" 
-            MaximumWidthRequest="{OnPlatform WinUI=700}" MinimumWidthRequest="{OnPlatform Default=240, WinUI=340}" >
+    <Border
+        HorizontalOptions="Fill"
+        MaximumWidthRequest="{OnPlatform WinUI=700, MacCatalyst=700}"
+        MinimumWidthRequest="{OnPlatform Default=240, WinUI=340}"
+        BackgroundColor="{StaticResource TabBarColor}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="10,10,0,0"/>
         </Border.StrokeShape>
-        <Grid HorizontalOptions="Fill" VerticalOptions="Center"
-              BackgroundColor="{StaticResource TabBarColor}"
-              HeightRequest="{StaticResource ViewHeight}">
-            <GraphicsView x:Name="graphicsView" 
-                          HorizontalOptions="Fill" VerticalOptions="Center"
-                          HeightRequest="{StaticResource ViewHeight}"
-                          SizeChanged="GraphicsViewSizeChanged" InputTransparent="True"/>
-            <Grid HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="{StaticResource ViewHeight}"
-                  ColumnDefinitions="*,*,*,*,*">
+        <Grid
+            CompressedLayout.IsHeadless="True"
+            HorizontalOptions="Fill" VerticalOptions="Center"
+            HeightRequest="{StaticResource ViewHeight}">
+            <GraphicsView
+                x:Name="graphicsView" 
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="{StaticResource ViewHeight}"
+                InputTransparent="True"/>
+            
+            <controls:TabBarLayer
+                x:Name="bottomLayer"
+                Margin="10, 0"
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="{StaticResource ViewHeight}"
+                Color="{StaticResource BackColor}"/>
+            
+            <controls:TabBarLayer
+                x:Name="topLayer"
+                Margin="10, 0"
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="{StaticResource ViewHeight}"
+                Color="{StaticResource Primary}"/>
+
+            <Grid
+                x:Name="buttonsGrid"
+                Margin="10, 0"
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="{StaticResource ViewHeight}"
+                ColumnDefinitions="*,*,*,*,*">
                 <Button Grid.Column="0" Clicked="DevoirsButtonClicked"/>
                 <Button Grid.Column="1" Clicked="AgendaButtonClicked"/>
                 <Button Grid.Column="2" Clicked="NotesButtonClicked"/>

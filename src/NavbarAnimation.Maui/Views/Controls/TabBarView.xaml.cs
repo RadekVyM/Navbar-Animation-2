@@ -1,13 +1,17 @@
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics;
 
 namespace NavbarAnimation.Maui.Views.Controls;
 
 public partial class TabBarView : ContentView
 {
-    bool initialSizeChange = true;
-    TabBarViewDrawable drawable;
-    int currentPosition = 0;
+    private const string AnimationKey = "Animation";
+    private const uint AnimationLength = 300;
+
+    double currentPosition = 0;
     private readonly float graphicsViewMargin = 10;
+    private double itemWidth => buttonsGrid.Width / (buttonsGrid?.Count ?? 1);
+    ThumbDrawable thumbDrawable => graphicsView.Drawable as ThumbDrawable;
 
     public event Action<object, TabBarEventArgs> CurrentPageSelectionChanged;
 
@@ -15,78 +19,70 @@ public partial class TabBarView : ContentView
     public TabBarView()
 	{
 		InitializeComponent();
-        drawable = CreateDrawable();
 
-        drawable.IconHeight = 20;
+        App.Current.Resources.TryGetValue("Primary", out object primaryColor);
 
-        graphicsView.Drawable = drawable;
+        graphicsView.Drawable = new ThumbDrawable
+        {
+            Color = primaryColor as Color,
+            ItemsCount = buttonsGrid?.Count ?? 1
+        };
+
+        buttonsGrid.SizeChanged += TabBarViewSizeChanged;
+    }
+
+    private void TabBarViewSizeChanged(object sender, EventArgs e)
+    {
+        UpdateAfterPositionChange();
+    }
+
+    private void UpdateAfterPositionChange()
+    {
+        bottomLayer.Clip = GetOuterClip(currentPosition);
+        topLayer.Clip = GetSelectionClip(currentPosition);
+
+        thumbDrawable.Position = currentPosition;
         graphicsView.Invalidate();
     }
 
+    public void SetSelection(int value)
+    {
+        currentPosition = value;
+        UpdateAfterPositionChange();
+    }
 
     private async Task AnimateToPosition(int position)
     {
-        uint animationLength = 300;
+        this.AbortAnimation(AnimationKey);
 
         var animation = new Animation(v =>
         {
-            drawable.SelectedRectPosition = (float)v;
-            graphicsView.Invalidate();
-        }, drawable.SelectedRectPosition, position, easing: Easing.SpringOut);
+            currentPosition = v;
+            UpdateAfterPositionChange();
+        }, currentPosition, position, easing: Easing.SpringOut);
 
-        animation.Commit(this, "Animation", length: animationLength);
+        animation.Commit(this, AnimationKey, length: AnimationLength);
 
-        await Task.Delay((int)animationLength);
-
-        currentPosition = position;
+        await Task.Delay((int)AnimationLength);
     }
 
-    private void GraphicsViewSizeChanged(object sender, EventArgs e)
+    private Geometry GetSelectionClip(double position)
     {
-        if (initialSizeChange && graphicsView.Width != 0)
+        return new RectangleGeometry(new Rect(position * itemWidth, 0, itemWidth, buttonsGrid.Height));
+    }
+
+    private Geometry GetOuterClip(double position)
+    {
+        var leftWidth = Math.Max(position * itemWidth, 0);
+
+        return new GeometryGroup
         {
-            SetDefaultSelection();
-            initialSizeChange = false;
-        }
-    }
-
-    private void SetDefaultSelection()
-    {
-        drawable.SelectedRectPosition = 0;
-        graphicsView.Invalidate();
-    }
-
-    private TabBarViewDrawable CreateDrawable()
-    {
-        var drawable = new TabBarViewDrawable(new List<TabContent>
-        {
-            new TabContent(GetGeometry("DevoirsTextPath"), GetGeometry("DevoirsPath")),
-            new TabContent(GetGeometry("AgendaTextPath"), GetGeometry("AgendaPath")),
-            new TabContent(GetGeometry("NotesTextPath"), GetGeometry("NotesPath")),
-            new TabContent(GetGeometry("MessagesTextPath"), GetGeometry("MessagesPath")),
-            new TabContent(GetGeometry("AbsencesTextPath"), GetGeometry("AbsencesPath")),
-        }, graphicsViewMargin);
-
-        drawable.SelectionColor = GetColor("Primary");
-        drawable.DefaultColor = GetColor("BackColor");
-        drawable.TabBarColor = GetColor("TabBarColor");
-
-        return drawable;
-    }
-
-    private Color GetColor(string key)
-    {
-        App.Current.Resources.TryGetValue(key, out object color);
-
-        return color as Color;
-    }
-
-    private PathGeometry GetGeometry(string key)
-    {
-        App.Current.Resources.TryGetValue(key, out object stringPath);
-        var geometry = new PathGeometryConverter().ConvertFromInvariantString(stringPath.ToString()) as PathGeometry;
-
-        return geometry;
+            Children = new GeometryCollection
+            {
+                new RectangleGeometry(new Rect(0, 0, leftWidth, buttonsGrid.Height)),
+                new RectangleGeometry(new Rect((position * itemWidth) + itemWidth, 0, buttonsGrid.Width - (position * itemWidth) - itemWidth, buttonsGrid.Height))
+            }
+        };
     }
 
     private void TabButtonClicked(PageType page, int position)
@@ -118,5 +114,37 @@ public partial class TabBarView : ContentView
     private void AbsencesButtonClicked(object sender, EventArgs e)
     {
         TabButtonClicked(PageType.AbsencesPage, 4);
+    }
+
+    private class ThumbDrawable : IDrawable
+    {
+        private const float Margin = 10;
+        private const float ThumbHeight = 10;
+
+        public Color Color { get; set; }
+        public double Position { get; set; } = 0;
+        public int ItemsCount { get; set; }
+
+        public void Draw(ICanvas canvas, RectF dirtyRect)
+        {
+            canvas.SaveState();
+
+            float width = dirtyRect.Width - (2 * Margin);
+            float selectedRectWidth = width / ItemsCount;
+            float selectedRectPosition = Margin + (float)(Position * selectedRectWidth);
+
+            var thumbPath = new PathF()
+                .MoveTo(selectedRectPosition, 0)
+                .LineTo(selectedRectPosition + selectedRectWidth, 0)
+                .QuadTo(selectedRectPosition + selectedRectWidth, ThumbHeight, selectedRectPosition + selectedRectWidth - ThumbHeight, ThumbHeight)
+                .LineTo(selectedRectPosition + ThumbHeight, ThumbHeight)
+                .QuadTo(selectedRectPosition, ThumbHeight, selectedRectPosition, 0);
+            thumbPath.Close();
+
+            canvas.SetFillPaint(new SolidPaint(Color), dirtyRect);
+            canvas.FillPath(thumbPath);
+
+            canvas.RestoreState();
+        }
     }
 }
