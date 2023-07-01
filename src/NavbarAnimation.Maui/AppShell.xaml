@@ -12,7 +12,7 @@
 
     </TabBar>
 
-    <simpleShell:SimpleShell.Content>
+    <simpleShell:SimpleShell.RootPageContainer>
         <Grid>
             <simpleShell:SimpleNavigationHost
                 x:Name="pageContainer"/>
@@ -21,6 +21,6 @@
                 VerticalOptions="End" HorizontalOptions="Fill"
                 CurrentPageSelectionChanged="TabBarViewCurrentPageChanged"/>
         </Grid>
-    </simpleShell:SimpleShell.Content>
+    </simpleShell:SimpleShell.RootPageContainer>
 
 </simpleShell:SimpleShell>
