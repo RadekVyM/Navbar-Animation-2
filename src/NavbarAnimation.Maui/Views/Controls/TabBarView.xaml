@@ -20,6 +20,7 @@
     </ContentView.Resources>
 
     <Border
+        x:Name="border"
         HorizontalOptions="Fill"
         MaximumWidthRequest="{OnPlatform WinUI=700, MacCatalyst=700}"
         MinimumWidthRequest="{OnPlatform Default=240, WinUI=340}"

@@ -1,5 +1,4 @@
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
 
 namespace NavbarAnimation.Maui.Views.Controls;
 
@@ -9,9 +8,17 @@ public partial class TabBarView : ContentView
     private const uint AnimationLength = 300;
 
     double currentPosition = 0;
-    private readonly float graphicsViewMargin = 10;
     private double itemWidth => buttonsGrid.Width / (buttonsGrid?.Count ?? 1);
     ThumbDrawable thumbDrawable => graphicsView.Drawable as ThumbDrawable;
+
+    public static readonly BindableProperty TabsPaddingProperty =
+            BindableProperty.Create(nameof(TabsPadding), typeof(Thickness), typeof(TabBarView), defaultValue: Thickness.Zero, propertyChanged: OnTabsPaddingChanged);
+
+    public Thickness TabsPadding
+    {
+        get => (Thickness)GetValue(TabsPaddingProperty);
+        set => SetValue(TabsPaddingProperty, value);
+    }
 
     public event Action<object, TabBarEventArgs> CurrentPageSelectionChanged;
 
@@ -114,6 +121,16 @@ public partial class TabBarView : ContentView
     private void AbsencesButtonClicked(object sender, EventArgs e)
     {
         TabButtonClicked(PageType.AbsencesPage, 4);
+    }
+
+    private static void OnTabsPaddingChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var tabBarView = bindable as TabBarView;
+
+        if (newValue is not Thickness padding)
+            return;
+
+        tabBarView.border.Padding = padding;
     }
 
     private class ThumbDrawable : IDrawable

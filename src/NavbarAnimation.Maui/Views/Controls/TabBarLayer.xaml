@@ -25,6 +25,7 @@
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="Margin" Value="6"/>
             <Setter Property="FontSize" Value="12"/>
+            <Setter Property="LineBreakMode" Value="TailTruncation"/>
         </Style>
     </Grid.Resources>
 

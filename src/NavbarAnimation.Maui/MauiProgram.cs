@@ -1,25 +1,28 @@
 ﻿using SimpleToolkit.Core;
 using SimpleToolkit.SimpleShell;
 
-namespace NavbarAnimation.Maui
-{
-    public static class MauiProgram
-    {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("GlacialIndifference-Bold.otf", "BoldFont");
-                })
-                .UseSimpleToolkit()
-                .UseSimpleShell();
+namespace NavbarAnimation.Maui;
 
-            return builder.Build();
-        }
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("GlacialIndifference-Bold.otf", "BoldFont");
+            })
+            .UseSimpleToolkit()
+            .UseSimpleShell();
+
+#if ANDROID || IOS
+        builder.DisplayContentBehindBars();
+#endif
+
+        return builder.Build();
     }
 }
