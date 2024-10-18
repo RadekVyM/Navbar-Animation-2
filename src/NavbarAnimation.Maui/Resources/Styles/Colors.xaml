@@ -4,9 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#c30363</Color>
-    <Color x:Key="Secondary">#e90376</Color>
-    <Color x:Key="Tertiary">#9c024f</Color>
+    <Color x:Key="Primary">#EB5E28</Color>
+    <Color x:Key="Secondary">#EB5E28</Color>
+    <Color x:Key="Tertiary">#EB5E28</Color>
+    <Color x:Key="Surface">#403D39</Color>
+    <Color x:Key="SurfaceContainer">#252422</Color>
+    <Color x:Key="SurfaceContainerDim">#CCC5B9</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -17,9 +20,6 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
-    <Color x:Key="TabBarColor">#fbfbfb</Color>
-    <Color x:Key="BackColor">#4e4e4e</Color>
-    <Color x:Key="LightPageBackgroundColor">#ebebeb</Color>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>

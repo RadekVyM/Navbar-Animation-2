@@ -6,7 +6,8 @@
 
     x:Class="NavbarAnimation.Maui.Views.Controls.TabBarLayer"
 
-    ColumnDefinitions="*, *, *, *, *">
+    ColumnDefinitions="*, *, *, *, *"
+    InputTransparent="True">
 
     <Grid.Resources>
         <Style x:Key="GridStyle" TargetType="Grid">
@@ -17,14 +18,16 @@
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="WidthRequest" Value="25"/>
             <Setter Property="HeightRequest" Value="25"/>
+            <Setter Property="Margin" Value="0, 0, 0, 8"/>
         </Style>
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{Binding Color}"/>
             <Setter Property="FontFamily" Value="BoldFont"/>
             <Setter Property="VerticalOptions" Value="End"/>
-            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
             <Setter Property="Margin" Value="6"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="LineBreakMode" Value="TailTruncation"/>
         </Style>
     </Grid.Resources>
@@ -34,49 +37,49 @@
         Style="{StaticResource GridStyle}">
         <simpleCore:Icon
             Style="{StaticResource IconStyle}"
-            Source="icon_devoirs.png"/>
+            Source="icon_games.png"/>
         <Label
             Style="{StaticResource LabelStyle}"
-            Text="devoirs"/>
+            Text="games"/>
     </Grid>
     <Grid
         Grid.Column="1"
         Style="{StaticResource GridStyle}">
         <simpleCore:Icon
             Style="{StaticResource IconStyle}"
-            Source="icon_agenda.png"/>
+            Source="icon_apps.png"/>
         <Label
             Style="{StaticResource LabelStyle}"
-            Text="agenda"/>
+            Text="apps"/>
     </Grid>
     <Grid
         Grid.Column="2"
         Style="{StaticResource GridStyle}">
         <simpleCore:Icon
             Style="{StaticResource IconStyle}"
-            Source="icon_notes.png"/>
+            Source="icon_movies.png"/>
         <Label
             Style="{StaticResource LabelStyle}"
-            Text="notes"/>
+            Text="movies"/>
     </Grid>
     <Grid
         Grid.Column="3"
         Style="{StaticResource GridStyle}">
         <simpleCore:Icon
             Style="{StaticResource IconStyle}"
-            Source="icon_messages.png"/>
+            Source="icon_books.png"/>
         <Label
             Style="{StaticResource LabelStyle}"
-            Text="messages"/>
+            Text="books"/>
     </Grid>
         <Grid
         Grid.Column="4"
         Style="{StaticResource GridStyle}">
         <simpleCore:Icon
             Style="{StaticResource IconStyle}"
-            Source="icon_absences.png"/>
+            Source="icon_search.png"/>
         <Label
             Style="{StaticResource LabelStyle}"
-            Text="absences"/>
+            Text="search"/>
     </Grid>
 </Grid>

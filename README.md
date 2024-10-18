@@ -1,6 +1,6 @@
 # Navbar Animation #2
 
-**.NET MAUI** implementation of [Navbar Animation #2](https://dribbble.com/shots/14122275-Navbar-Animation-2) design by [Marie Bernard](https://dribbble.com/marie_brn).
+**.NET MAUI** tab bar inspired by the [Navbar Animation #2](https://dribbble.com/shots/14122275-Navbar-Animation-2) design by [Marie Bernard](https://dribbble.com/marie_brn).
 
 
 https://github.com/RadekVyM/Navbar-Animation-2/assets/65116078/28e3f2b3-4e61-4471-b7c4-2d6d6d89794d
@@ -9,6 +9,8 @@ https://github.com/RadekVyM/Navbar-Animation-2/assets/65116078/28e3f2b3-4e61-447
 This project demonstrates how to create a **custom tab bar** and integrate it with the `SimpleShell` control from [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit).
 
 ## Original design
+
+Many thanks to [Marie Bernard](https://dribbble.com/marie_brn) for their beautiful original work.
 
 [![Dribbble Design](./images/navbaranimation_original.gif)](https://dribbble.com/shots/14122275-Navbar-Animation-2)
 
@@ -29,11 +31,7 @@ Here are some resources to learn more about .NET MAUI:
 Only .NET MAUI APIs and my [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library were used to create this sample.
 
 <p align="center">
-    <img src="./images/android_navbaranimation_2.webp" width="220">
+    <img src="./images/android_navbaranimation_2.webp" width="219">
     &nbsp;&nbsp;
     <img src="./images/iphone_navbaranimation_2.webp" width="226">
-</p>
-
-<p align="center">
-    <img src="./images/windows_navbaranimation_2.gif" data-canonical-src="./images/windows_navbaranimation_2.gif" width="500" />
 </p>

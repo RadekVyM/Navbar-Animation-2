@@ -42,10 +42,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#c30363" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#EB5E28" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#c30363" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#EB5E28" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -61,5 +61,23 @@
 		<None Remove="Resources\Images\icon_notes.png" />
 		<None Remove="Resources\Images\icon_messages.png" />
 		<None Remove="Resources\Images\icon_absences.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views/Pages/SearchPage.xaml.cs">
+	    <DependentUpon>SearchPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views/Pages/AppsPage.xaml.cs">
+	    <DependentUpon>AppsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views/Pages/GamesPage.xaml.cs">
+	    <DependentUpon>GamesPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views/Pages/BooksPage.xaml.cs">
+	    <DependentUpon>BooksPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views/Pages/MoviesPage.xaml.cs">
+	    <DependentUpon>MoviesPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

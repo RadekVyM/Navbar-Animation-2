@@ -7,7 +7,7 @@
     xmlns:c="clr-namespace:NavbarAnimation.Maui.Views.Controls"
     xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
 
-    Background="White">
+    Background="{StaticResource Surface}">
 
 
     <TabBar x:Name="tabBar">

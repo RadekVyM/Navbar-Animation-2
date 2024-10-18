@@ -9,11 +9,11 @@ public partial class AppShell : SimpleToolkit.SimpleShell.SimpleShell
     {
         InitializeComponent();
 
-        AddTab(typeof(DevoirsPage), PageType.DevoirsPage);
-        AddTab(typeof(AgendaPage), PageType.AgendaPage);
-        AddTab(typeof(NotesPage), PageType.NotesPage);
-        AddTab(typeof(MessagesPage), PageType.MessagesPage);
-        AddTab(typeof(AbsencesPage), PageType.AbsencesPage);
+        AddTab(typeof(GamesPage), PageType.GamesPage);
+        AddTab(typeof(AppsPage), PageType.AppsPage);
+        AddTab(typeof(MoviesPage), PageType.MoviesPage);
+        AddTab(typeof(BooksPage), PageType.BooksPage);
+        AddTab(typeof(SearchPage), PageType.SearchPage);
 
         tabBarView.SetSelection(0);
 
@@ -48,5 +48,5 @@ public partial class AppShell : SimpleToolkit.SimpleShell.SimpleShell
 
 public enum PageType
 {
-    DevoirsPage, AgendaPage, NotesPage, MessagesPage, AbsencesPage
+    GamesPage, AppsPage, MoviesPage, BooksPage, SearchPage
 }

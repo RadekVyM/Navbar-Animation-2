@@ -98,29 +98,29 @@ public partial class TabBarView : ContentView
         CurrentPageSelectionChanged?.Invoke(this, new TabBarEventArgs(page));
     }
 
-    private void DevoirsButtonClicked(object sender, EventArgs e)
+    private void GamesButtonClicked(object sender, EventArgs e)
     {
-        TabButtonClicked(PageType.DevoirsPage, 0);
+        TabButtonClicked(PageType.GamesPage, 0);
     }
 
-    private void AgendaButtonClicked(object sender, EventArgs e)
+    private void AppsButtonClicked(object sender, EventArgs e)
     {
-        TabButtonClicked(PageType.AgendaPage, 1);
+        TabButtonClicked(PageType.AppsPage, 1);
     }
 
-    private void NotesButtonClicked(object sender, EventArgs e)
+    private void MoviesButtonClicked(object sender, EventArgs e)
     {
-        TabButtonClicked(PageType.NotesPage, 2);
+        TabButtonClicked(PageType.MoviesPage, 2);
     }
 
-    private void MessagesButtonClicked(object sender, EventArgs e)
+    private void BooksButtonClicked(object sender, EventArgs e)
     {
-        TabButtonClicked(PageType.MessagesPage, 3);
+        TabButtonClicked(PageType.BooksPage, 3);
     }
 
-    private void AbsencesButtonClicked(object sender, EventArgs e)
+    private void SearchButtonClicked(object sender, EventArgs e)
     {
-        TabButtonClicked(PageType.AbsencesPage, 4);
+        TabButtonClicked(PageType.SearchPage, 4);
     }
 
     private static void OnTabsPaddingChanged(BindableObject bindable, object oldValue, object newValue)

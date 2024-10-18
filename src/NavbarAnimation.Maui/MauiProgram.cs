@@ -14,13 +14,18 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("GlacialIndifference-Bold.otf", "BoldFont");
+                fonts.AddFont("Fredoka-SemiBold.ttf", "BoldFont");
             })
             .UseSimpleToolkit()
             .UseSimpleShell();
 
 #if ANDROID || IOS
         builder.DisplayContentBehindBars();
+#endif
+
+#if ANDROID
+        builder.SetDefaultStatusBarAppearance(color: Colors.Transparent, lightElements: true);
+        builder.SetDefaultNavigationBarAppearance(color: Colors.Transparent);
 #endif
 
         return builder.Build();

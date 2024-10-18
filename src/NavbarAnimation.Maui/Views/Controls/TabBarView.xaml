@@ -3,19 +3,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:NavbarAnimation.Maui.Views.Controls"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
     x:Class="NavbarAnimation.Maui.Views.Controls.TabBarView">
 
     <ContentView.Resources>
         <x:Double x:Key="ViewHeight">80</x:Double>
 
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type simpleCore:ContentButton}">
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="HorizontalOptions" Value="Fill"/>
             <Setter Property="HeightRequest" Value="{StaticResource ViewHeight}"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="CornerRadius" Value="0"/>
-            <Setter Property="BorderWidth" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="{StaticResource SurfaceContainer}"/>
         </Style>
     </ContentView.Resources>
 
@@ -24,7 +23,7 @@
         HorizontalOptions="Fill"
         MaximumWidthRequest="{OnPlatform WinUI=700, MacCatalyst=700}"
         MinimumWidthRequest="{OnPlatform Default=240, WinUI=340}"
-        BackgroundColor="{StaticResource TabBarColor}">
+        BackgroundColor="{StaticResource SurfaceContainer}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="10, 10, 0, 0"/>
         </Border.StrokeShape>
@@ -32,6 +31,19 @@
             CompressedLayout.IsHeadless="True"
             HorizontalOptions="Fill" VerticalOptions="Center"
             HeightRequest="{StaticResource ViewHeight}">
+            <Grid
+                x:Name="buttonsGrid"
+                Margin="10, 0"
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="{StaticResource ViewHeight}"
+                ColumnDefinitions="*, *, *, *, *">
+                <simpleCore:ContentButton Grid.Column="0" Clicked="GamesButtonClicked"/>
+                <simpleCore:ContentButton Grid.Column="1" Clicked="AppsButtonClicked"/>
+                <simpleCore:ContentButton Grid.Column="2" Clicked="MoviesButtonClicked"/>
+                <simpleCore:ContentButton Grid.Column="3" Clicked="BooksButtonClicked"/>
+                <simpleCore:ContentButton Grid.Column="4" Clicked="SearchButtonClicked"/>
+            </Grid>
+
             <GraphicsView
                 x:Name="graphicsView" 
                 HorizontalOptions="Fill" VerticalOptions="Center"
@@ -43,7 +55,7 @@
                 Margin="10, 0"
                 HorizontalOptions="Fill" VerticalOptions="Center"
                 HeightRequest="{StaticResource ViewHeight}"
-                Color="{StaticResource BackColor}"/>
+                Color="{StaticResource SurfaceContainerDim}"/>
             
             <controls:TabBarLayer
                 x:Name="topLayer"
@@ -51,19 +63,6 @@
                 HorizontalOptions="Fill" VerticalOptions="Center"
                 HeightRequest="{StaticResource ViewHeight}"
                 Color="{StaticResource Primary}"/>
-
-            <Grid
-                x:Name="buttonsGrid"
-                Margin="10, 0"
-                HorizontalOptions="Fill" VerticalOptions="Center"
-                HeightRequest="{StaticResource ViewHeight}"
-                ColumnDefinitions="*, *, *, *, *">
-                <Button Grid.Column="0" Clicked="DevoirsButtonClicked"/>
-                <Button Grid.Column="1" Clicked="AgendaButtonClicked"/>
-                <Button Grid.Column="2" Clicked="NotesButtonClicked"/>
-                <Button Grid.Column="3" Clicked="MessagesButtonClicked"/>
-                <Button Grid.Column="4" Clicked="AbsencesButtonClicked"/>
-            </Grid>
         </Grid>
     </Border>
 </ContentView>
